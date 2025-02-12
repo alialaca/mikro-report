@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model OdemePlan {
+  id          Int    @id @map("odp_no")
+  isim        String @map("odp_adi")
+  iskonto_kod Int    @map("odp_special1")
+
+  @@map("ODEME_PLANLARI")
+}
