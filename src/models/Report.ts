@@ -5,7 +5,6 @@ export interface ReportConfig {
   cronExpression: string;
   query: string;
   enabled: boolean;
-  apiEndpoint: string;
   to: string;
   cc?: string;
   bcc?: string;
