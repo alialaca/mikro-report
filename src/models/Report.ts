@@ -6,6 +6,9 @@ export interface ReportConfig {
   query: string;
   enabled: boolean;
   apiEndpoint: string;
+  to: string;
+  cc?: string;
+  bcc?: string;
 }
 
 export type ReportsConfig = {

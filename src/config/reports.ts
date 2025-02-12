@@ -9,7 +9,8 @@ export const reportsConfig: ReportsConfig = {
       cronExpression: "* * * * *",
       query: `SELECT COUNT(sto_kod) FROM STOKLAR`,
       enabled: true,
-      apiEndpoint: "/templates/min-stok"
+      apiEndpoint: "/templates/min-stok",
+      to: "ali@fixpro.com.tr"
     },
     {
       id: "gunluk-satis",

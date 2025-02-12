@@ -1,24 +1,32 @@
 import cron from 'node-cron';
 import { DataService } from './DataService';
-import { ApiService } from './ApiService';
+import { MailService, MailOptions } from './MailService';
 import { logger } from '../utils/logger';
 import { reportsConfig } from '../config/reports';
 import { ReportConfig } from '../models/Report';
 
 export class CronService {
   private dataService: DataService;
-  private apiService: ApiService;
+  private mailService: MailService;
 
   constructor() {
     this.dataService = new DataService();
-    this.apiService = new ApiService();
+    this.mailService = new MailService();
   }
 
   private async executeReport(report: ReportConfig) {
     try {
       const data = await this.dataService.executeQuery(report.query);
-      await this.apiService.sendData(report.apiEndpoint, data);
-      logger.info(`Rapor başarıyla çalıştırıldı: ${report.name}`);
+      const mailOptions: MailOptions = {
+        to: report.to,
+        cc: report.cc,
+        bcc: report.bcc,
+        subject: `${report.name} - ${new Date().toLocaleDateString('tr-TR')}`,
+        text: JSON.stringify(data, null, 2)
+      }    
+
+      await this.mailService.sendMail(mailOptions);
+      logger.info(`Rapor başarıyla çalıştırıldı ve mail gönderildi: ${report.name}`);
     } catch (error) {
       logger.error(`Rapor çalıştırma hatası (${report.name}):`, error);
     }
