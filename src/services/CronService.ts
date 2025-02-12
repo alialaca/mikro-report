@@ -2,8 +2,8 @@ import cron from 'node-cron';
 import { DataService } from './DataService';
 import { MailService, MailOptions } from './MailService';
 import { logger } from '../utils/logger';
-import { reportsConfig } from '../config/reports';
-import { ReportConfig } from '../models/Report';
+import { reportsConfig } from '../config';
+import { ReportConfig } from '../types';
 
 export class CronService {
   private dataService: DataService;

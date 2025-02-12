@@ -1,5 +1,5 @@
-import { ReportConfig, ReportsConfig } from '../models/Report';
-import { loadSqlQuery } from '../utils/sql';
+import { ReportConfig, ReportsConfig } from './types';
+import { loadSqlQuery } from './utils/sql';
 
 export const reportsConfig: ReportsConfig = {
   reports: <ReportConfig[]>[
