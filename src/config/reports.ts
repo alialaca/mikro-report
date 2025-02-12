@@ -1,4 +1,5 @@
 import { ReportConfig, ReportsConfig } from '../models/Report';
+import { loadSqlQuery } from '../utils/sql';
 
 export const reportsConfig: ReportsConfig = {
   reports: <ReportConfig[]>[
@@ -7,7 +8,7 @@ export const reportsConfig: ReportsConfig = {
       name: "Günlük Sipariş Raporu",
       description: "Her dakika çalışır (test için)",
       cronExpression: "* * * * *",
-      query: `SELECT COUNT(sto_kod) FROM STOKLAR`,
+      query: loadSqlQuery('gunluk-siparis'),
       enabled: true,
       to: "ali@fixpro.com.tr"
     },
@@ -16,7 +17,7 @@ export const reportsConfig: ReportsConfig = {
       name: "Günlük Satış Raporu",
       description: "Her akşam 7'de günlük satış verilerini gönderir",
       cronExpression: "0 19 * * *",
-      query: ``,
+      query: loadSqlQuery('gunluk-satis'),
       enabled: false,
       to: "ali@fixpro.com.tr"
     }
