@@ -1,23 +1,50 @@
 import mjml2html from 'mjml';
 import Handlebars from 'handlebars';
 
+// Para formatı için helper
+Handlebars.registerHelper('formatMoney', function(value: number) {
+  return new Intl.NumberFormat('en-US', { 
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2 
+  }).format(value);
+});
+
+// Sayı formatı için helper
+Handlebars.registerHelper('formatNumber', function(value: number) {
+  return new Intl.NumberFormat('en-US', { 
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2 
+  }).format(value);
+});
+
+// Toplam hesaplama için helper ekleyelim
+Handlebars.registerHelper('sum', function(items: any[], key: string) {
+  return items.reduce((acc, item) => acc + (item[key] || 0), 0);
+});
+
 const defaultTemplate = `
 <mjml>
-  <mj-body>
+  <mj-body width="1200px">
     <mj-section>
-      <mj-column>
-        <mj-text font-size="20px" font-weight="bold">
+      <mj-column width="100%">
+        <mj-text font-size="20px" font-weight="bold" align="center">
           {{title}}
         </mj-text>
-        <mj-text>
+        <mj-text align="center">
           {{date}} tarihli rapor
         </mj-text>
-        <mj-table>
+        <mj-table width="100%">
+          {{#each data.[0]}}
+          <th style="border-bottom: 1px solid #ecedee; text-align: left; padding: 10px;">
+            {{@key}}
+          </th>
+          {{/each}}
           {{#each data}}
-            <tr>
-              <td>{{@key}}</td>
-              <td>{{this}}</td>
-            </tr>
+          <tr>
+            {{#each this}}
+            <td style="padding: 10px;">{{this}}</td>
+            {{/each}}
+          </tr>
           {{/each}}
         </mj-table>
       </mj-column>
@@ -27,7 +54,6 @@ const defaultTemplate = `
 `;
 
 export const loadTemplate = (title: string, data: any): string => {
-    console.log(data)
   try {
     const compiledTemplate = Handlebars.compile(defaultTemplate);
     const mjmlContent = compiledTemplate({
