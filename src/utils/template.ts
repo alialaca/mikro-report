@@ -27,6 +27,7 @@ const defaultTemplate = `
 `;
 
 export const loadTemplate = (title: string, data: any): string => {
+    console.log(data)
   try {
     const compiledTemplate = Handlebars.compile(defaultTemplate);
     const mjmlContent = compiledTemplate({
@@ -36,7 +37,7 @@ export const loadTemplate = (title: string, data: any): string => {
     });
     const { html } = mjml2html(mjmlContent);
     return html;
-  } catch (error) {
-    throw new Error(`Template oluşturma hatası: ${error.message}`);
+  } catch (error: unknown) {
+    throw new Error(`Template oluşturma hatası: ${error instanceof Error ? error.message : 'Bilinmeyen hata'}`);
   }
 }; 
