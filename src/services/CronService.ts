@@ -4,7 +4,6 @@ import { MailService, MailOptions } from './MailService';
 import { logger } from '../utils/logger';
 import { reportsConfig } from '../config';
 import { ReportConfig } from '../types';
-import { loadTemplate } from '../utils/template';
 import { ReportController } from '../controllers/ReportController';
 
 export class CronService {

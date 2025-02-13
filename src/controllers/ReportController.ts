@@ -1,8 +1,9 @@
 import { GunlukSiparisController } from './reports/GunlukSiparisController';
 import { ReportConfig } from '../types';
+import { IReportController } from './reports/BaseReportController';
 
 type Controllers = {
-  [key: string]: GunlukSiparisController;
+  [key: string]: IReportController;
 }
 
 export class ReportController {
