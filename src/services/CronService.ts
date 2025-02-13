@@ -4,6 +4,7 @@ import { MailService, MailOptions } from './MailService';
 import { logger } from '../utils/logger';
 import { reportsConfig } from '../config';
 import { ReportConfig } from '../types';
+import { loadTemplate } from '../utils/template';
 
 export class CronService {
   private dataService: DataService;
@@ -17,13 +18,18 @@ export class CronService {
   private async executeReport(report: ReportConfig) {
     try {
       const data = await this.dataService.executeQuery(report.query);
+      const html = loadTemplate(report.name, {
+        date: new Date().toLocaleDateString('tr-TR'),
+        data
+      });
+
       const mailOptions: MailOptions = {
         to: report.to,
         cc: report.cc,
         bcc: report.bcc,
         subject: `${report.name} - ${new Date().toLocaleDateString('tr-TR')}`,
-        text: JSON.stringify(data, null, 2)
-      }    
+        html
+      };
 
       await this.mailService.sendMail(mailOptions);
       logger.info(`Rapor başarıyla çalıştırıldı ve mail gönderildi: ${report.name}`);

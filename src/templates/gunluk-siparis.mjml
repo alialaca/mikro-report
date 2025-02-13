@@ -1,0 +1,22 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="20px" font-weight="bold">
+          Günlük Sipariş Raporu
+        </mj-text>
+        <mj-text>
+          {{date}} tarihli rapor
+        </mj-text>
+        <mj-table>
+          {{#each data}}
+            <tr>
+              <td>{{@key}}</td>
+              <td>{{this}}</td>
+            </tr>
+          {{/each}}
+        </mj-table>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml> 
