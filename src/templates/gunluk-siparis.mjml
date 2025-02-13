@@ -1,19 +1,25 @@
 <mjml>
-  <mj-body>
+  <mj-body width="1200px">
     <mj-section>
-      <mj-column>
-        <mj-text font-size="20px" font-weight="bold">
+      <mj-column width="100%">
+        <mj-text font-size="20px" font-weight="bold" align="center">
           Günlük Sipariş Raporu
         </mj-text>
-        <mj-text>
+        <mj-text align="center">
           {{date}} tarihli rapor
         </mj-text>
-        <mj-table>
+        <mj-table width="100%">
+          {{#each data.[0]}}
+          <th style="border-bottom: 1px solid #ecedee; text-align: left; padding: 10px;">
+            {{@key}}
+          </th>
+          {{/each}}
           {{#each data}}
-            <tr>
-              <td>{{@key}}</td>
-              <td>{{this}}</td>
-            </tr>
+          <tr>
+            {{#each this}}
+            <td style="padding: 10px;">{{this}}</td>
+            {{/each}}
+          </tr>
           {{/each}}
         </mj-table>
       </mj-column>

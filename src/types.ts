@@ -4,6 +4,7 @@ export interface ReportConfig {
   description?: string;
   cronExpression: string;
   query: string;
+  template: string; // templates/xxx.mjml dosya adı
   enabled: boolean;
   to: string;
   cc?: string;

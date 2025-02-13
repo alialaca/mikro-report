@@ -1,7 +1,7 @@
 import mjml2html from 'mjml';
 import Handlebars from 'handlebars';
 
-// Para formatı için helper
+// Handlebars helpers
 Handlebars.registerHelper('formatMoney', function(value: number) {
   return new Intl.NumberFormat('en-US', { 
     minimumFractionDigits: 2,
@@ -9,7 +9,6 @@ Handlebars.registerHelper('formatMoney', function(value: number) {
   }).format(value);
 });
 
-// Sayı formatı için helper
 Handlebars.registerHelper('formatNumber', function(value: number) {
   return new Intl.NumberFormat('en-US', { 
     minimumFractionDigits: 0,
@@ -53,14 +52,10 @@ const defaultTemplate = `
 </mjml>
 `;
 
-export const loadTemplate = (title: string, data: any): string => {
+export const loadMjmlTemplate = (template: string, data: any): string => {
   try {
-    const compiledTemplate = Handlebars.compile(defaultTemplate);
-    const mjmlContent = compiledTemplate({
-      title,
-      date: data.date,
-      data: data.data
-    });
+    const compiledTemplate = Handlebars.compile(template);
+    const mjmlContent = compiledTemplate(data);
     const { html } = mjml2html(mjmlContent);
     return html;
   } catch (error: unknown) {
