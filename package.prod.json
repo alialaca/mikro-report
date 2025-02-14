@@ -1,0 +1,23 @@
+{
+  "name": "mikroerp-rapor",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "handlebars": "^4.7.8",
+    "mjml": "^4.15.3",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.10.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.10.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "schema": "./prisma/schema.prisma"
+  }
+} 
