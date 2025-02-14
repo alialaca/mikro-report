@@ -2,4 +2,8 @@ node_modules
 STRUCTURE.md
 logs
 dist
+prod
 .env*
+.idea
+.vscode
+.DS_Store
