@@ -1,28 +1,41 @@
 <mjml>
+  <mj-head>
+    <mj-style>
+      .report-table {
+        width: 1200px !important;
+        min-width: 1200px !important;
+      }
+      .report-table td, .report-table th {
+        padding: 10px !important;
+      }
+    </mj-style>
+  </mj-head>
   <mj-body width="1200px">
-    <mj-section>
-      <mj-column width="100%">
-        <mj-text font-size="20px" font-weight="bold" align="center">
-          Günlük Sipariş Raporu
-        </mj-text>
-        <mj-text align="center">
-          {{date}} tarihli rapor
-        </mj-text>
-        <mj-table width="100%">
-          {{#each data.[0]}}
-          <th style="border-bottom: 1px solid #ecedee; text-align: left; padding: 10px;">
-            {{@key}}
-          </th>
-          {{/each}}
-          {{#each data}}
-          <tr>
-            {{#each this}}
-            <td style="padding: 10px;">{{this}}</td>
+    <mj-wrapper>
+      <mj-section>
+        <mj-column width="100%">
+          <mj-text font-size="20px" font-weight="bold" align="center">
+            Günlük Sipariş Raporu
+          </mj-text>
+          <mj-text align="center">
+            {{date}} tarihli rapor
+          </mj-text>
+          <mj-table css-class="report-table">
+            {{#each data.[0]}}
+            <th style="border-bottom: 1px solid #ecedee; text-align: left; padding: 10px;">
+              {{@key}}
+            </th>
             {{/each}}
-          </tr>
-          {{/each}}
-        </mj-table>
-      </mj-column>
-    </mj-section>
+            {{#each data}}
+            <tr>
+              {{#each this}}
+              <td style="padding: 10px;">{{this}}</td>
+              {{/each}}
+            </tr>
+            {{/each}}
+          </mj-table>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
   </mj-body>
 </mjml> 
