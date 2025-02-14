@@ -7,11 +7,13 @@ module.exports = {
     watch: false,
     max_memory_restart: '1G',
     env: {
-      NODE_ENV: 'production'
+      NODE_ENV: 'production',
+      TZ: 'Europe/Istanbul'
     },
-    error_file: './logs/pm2/error.log',
-    out_file: './logs/pm2/output.log',
-    log_file: './logs/pm2/combined.log',
+    env_file: '.env',
+    error_file: './logs/error.log',
+    out_file: './logs/output.log',
+    log_file: './logs/combined.log',
     merge_logs: true,
     time: true
   }]
