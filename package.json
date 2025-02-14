@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "build": "tsc && npx copyfiles -u 1 \"src/**/*.{sql,mjml}\" dist/",
+    "build": "rm -rf dist && tsc && npx copyfiles -u 1 \"src/**/*.{sql,mjml}\" dist/ && cp package.prod.json dist/package.json && cp ecosystem.config.js dist/ && cp -r prisma dist/",
     "start": "node dist/app.js",
     "test": "jest"
   },
